@@ -1,0 +1,18 @@
+TARGET  = font
+SRCS    = main.c gmain.c font.c
+OBJS    = $(SRCS:.c=.o)
+
+CC      = gcc
+CFLAGS  = -O2 -Wall
+INCDIR  = -I/usr/local/include
+LIBDIR  = -L/usr/local/lib64
+LIBS    = -leggx -lX11 -lm
+
+$(TARGET): $(OBJS)
+	$(CC) -o $@ $^ $(LIBDIR) $(LIBS)
+
+$(OBJS): $(SRCS)
+	$(CC) $(CFLAGS) $(INCDIR) -c $(SRCS)
+
+clean:
+	rm -f $(TARGET) $(OBJS)
